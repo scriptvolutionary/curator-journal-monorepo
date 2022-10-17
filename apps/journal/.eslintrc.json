@@ -1,18 +1,80 @@
 {
-  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
-  "ignorePatterns": ["!**/*"],
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {}
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "rules": {}
-    },
-    {
-      "files": ["*.js", "*.jsx"],
-      "rules": {}
-    }
-  ]
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+	"plugins": ["@typescript-eslint", "simple-import-sort", "unused-imports"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@nrwl/nx/react",
+		"../../.eslintrc.json",
+		"plugin:@typescript-eslint/recommended",
+		"prettier"
+	],
+	"rules": {
+		"no-unused-vars": "off",
+		"no-console": "warn",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"react/no-unescaped-entities": "off",
+
+		"react/display-name": "off",
+		"react/jsx-curly-brace-presence": ["warn", { "props": "never", "children": "never" }],
+
+		"@typescript-eslint/no-unused-vars": "off",
+		"unused-imports/no-unused-imports": "warn",
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{
+				"vars": "all",
+				"varsIgnorePattern": "^_",
+				"args": "after-used",
+				"argsIgnorePattern": "^_"
+			}
+		],
+
+		"simple-import-sort/exports": "warn",
+		"simple-import-sort/imports": [
+			"warn",
+			{
+				"groups": [
+					["^@?\\w", "^\\u0000"],
+					["^@assets"],
+					["^@services"],
+					["^@utils"],
+					["^@components"],
+					["^@store"],
+					["^@views"],
+					["^@"],
+					[
+						"^\\./?$",
+						"^\\.(?!/?$)",
+						"^\\.\\./?$",
+						"^\\.\\.(?!/?$)",
+						"^\\.\\./\\.\\./?$",
+						"^\\.\\./\\.\\.(?!/?$)",
+						"^\\.\\./\\.\\./\\.\\./?$",
+						"^\\.\\./\\.\\./\\.\\.(?!/?$)"
+					],
+					["^"],
+					["^.+\\.s?css$"]
+				]
+			}
+		]
+	},
+	"ignorePatterns": ["!**/*"],
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+			"rules": {}
+		},
+		{
+			"files": ["*.ts", "*.tsx"],
+			"rules": {}
+		},
+		{
+			"files": ["*.js", "*.jsx"],
+			"rules": {}
+		}
+	]
 }
